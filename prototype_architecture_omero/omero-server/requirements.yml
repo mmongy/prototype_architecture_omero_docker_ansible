@@ -1,0 +1,7 @@
+# External Ansible roles required by this repository
+
+- src: ome.omero_server
+  version: 4.0.2
+
+- src: ome.omero_user
+  version: 0.3.0
