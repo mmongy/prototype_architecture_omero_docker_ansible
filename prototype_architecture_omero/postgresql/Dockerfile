@@ -27,5 +27,5 @@ RUN curl -L -o /usr/local/bin/dumb-init \
     chmod +x /usr/local/bin/dumb-init
 
 
-EXPOSE 5432
-ENTRYPOINT ["postgres"]
+#EXPOSE 5432
+#CMD ["postgres"]

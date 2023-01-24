@@ -24,7 +24,6 @@ services:
     build:
       context: .
       dockerfile: ./omero-server/Dockerfile
-    entrypoint: ./omero-server/entrypoint.sh
     container_name: omero_server
     restart: "no"
     networks:
@@ -44,7 +43,6 @@ services:
     build:
       context: .
       dockerfile: ./omero-web/Dockerfile
-    entrypoint: ./omero-web/entrypoint.sh
     container_name: omero_web
     restart: "no"
     networks:
@@ -59,26 +57,26 @@ networks:
 
 volumes:
   omero-psql-database:
-    #name: omero-psql-database
-    #driver_opts:
-      #type: none
-      #device: /Data/omero_postgresql_database
-      #o: bind
+    name: omero-psql-database
+    driver_opts:
+      type: none
+      device: ./Data/omero_postgresql_database
+      o: bind
   omero-data:
-    #name: omero-data
-    #driver_opts:
-      #type: none
-      #device: /Data/raw_image_data
-      #o: bind
+    name: omero-data
+    driver_opts:
+      type: none
+      device: ./Data/raw_image_data
+      o: bind
   omero-server-config:
-    #name: omero-server-config
-    #driver_opts:
-      #type: none
-      #device: /Data/omero_server_config_files
-      #o: bind
+    name: omero-server-config
+    driver_opts:
+      type: none
+      device: ./Data/omero_server_config_files
+      o: bind
   omero-web-config:
-    #name: omero-web-config
-    #driver_opts:
-      #type: none
-      #device: /Data/omero_web_config_files
-      #o: bind
+    name: omero-web-config
+    driver_opts:
+      type: none
+      device: ./Data/omero_web_config_files
+      o: bind
