@@ -1,0 +1,1 @@
+# prototype_architecture_omero_docker_ansible
