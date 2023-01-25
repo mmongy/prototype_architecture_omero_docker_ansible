@@ -1,5 +1,7 @@
 - hosts: localhost
   roles:
+  - role: ome.java
+  - role: ome.ice
   - role: ome.omero_server
     omero_server_release: latest
     omero_server_python_addons:

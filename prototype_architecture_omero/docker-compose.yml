@@ -1,4 +1,4 @@
-version: "3.4"
+version: "3.7"
 
 services:
 
@@ -8,7 +8,11 @@ services:
       context: .
       dockerfile: ./postgresql/Dockerfile
     env_file:
-      - ./postgresql/.env
+      - ./postgresql/postgresql_variables.env
+    #environment:
+      #POSTGRES_USER: omero
+      #POSTGRES_DB: omero
+      #POSTGRES_PASSWORD: omero 
     networks:
       - my_omero_network
     ports: ["5432:5432"]
@@ -20,7 +24,18 @@ services:
     depends_on:
       - omero_postgres_database
     env_file:
-      - ./omero-server/.env
+      - ./omero-server/omero_server_variables.env
+    #environment:
+      #OMERODIR: /opt/omero/server/OMERO.server
+      #OMERO_DATA_DIR: /OMERO
+      #ICE_HOME: /opt/ice-3.6.5
+      #PATH: /opt/omero/server/venv3/bin:$ICE_HOME/bin:$PATH
+      #LD_LIBRARY_PATH: $ICE_HOME/lib64:$ICE_HOME/lib:$LD_LIBRARY_PATH
+      #SLICEPATH: $ICE_HOME/slice
+      #OMERO_DB_USER: db_user
+      #OMERO_DB_PASS: db_password
+      #OMERO_DB_NAME: postgres_database
+      #OMERO_ROOT_PASS: omero_root_password
     build:
       context: .
       dockerfile: ./omero-server/Dockerfile
@@ -39,7 +54,13 @@ services:
       - omero_postgres_database
       - omero_server
     env_file:
-      - ./omero-web/.env
+      - ./omero-web/omero_web_variables.env
+    #environment:
+      #WEBSESSION: "True"
+      #OMERODIR: /opt/omero/web/omero-web
+      #PATH: /opt/omero/web/venv3/bin:$PATH
+      #WEBPORT: 80
+      #WEBSERVER_NAME: omero_server
     build:
       context: .
       dockerfile: ./omero-web/Dockerfile
